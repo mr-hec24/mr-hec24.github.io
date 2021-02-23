@@ -35,7 +35,7 @@ function onPageLoad() {
     else {
         access_token = localStorage.getItem("access_token");
         if (access_token == null) {
-            // we dont have an access token tso present token section
+            // we dont have an access token so present token section
             document.getElementById("tokenSection").style.display = 'block';
         }
         else {
@@ -94,6 +94,7 @@ function refreshAccessToken() {
     refresh_token = localStorage.getItem("refresh_token");
     let body = "grant_type=refresh_token";
     body += "&refresh_token=" + refresh_token;
+    body += "&client_id=" = client_id;
     callAuthorizationApi(body);
 }
 
