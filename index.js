@@ -77,7 +77,7 @@ function requestAuthorization() {
     url += "&response_type=code";
     url += "&redirect_uri=" + redirect_uri;
     url += "&show_dialog=true";
-    url += "&scope=playlist-read-private";
+    url += "&scope=user-read-private user-read-email user-modify-playback-state user-read-playback-position user-library-read streaming user-read-playback-state user-read-recently-played playlist-read-private";
     window.location.href = url; // Shows Spotify's Authorization Screen
 }
 
@@ -156,7 +156,7 @@ function addDevice (item) {
 
 function callApi(method, url, body, callback) {
     let xhr = new XMLHttpRequest();
-    xhr.open(method, rul, true);
+    xhr.open(method, url, true);
     xhr.setRequestHeader('Content-Type', "application/json");
     xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
     xhr.send(body);
