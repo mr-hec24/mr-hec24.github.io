@@ -1,7 +1,17 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body>
-      <h1>Title Page For Hector A. Rodriguez</h1>
-  </body>
+    <head>
+        <script src="anotherIndex.js"></script>
+    </head>
+    <body onload="onPageLoad()">
+        <input id="clientID" type="text" placeholder="Client ID">
+        <input id="clientSecret" type="text" placeholder="Client Secret">
+        <button onclick="requestAuthorization()">Submit</button>
+        <div id="deviceSelection">
+            <select id="playlists">
+
+            </select>
+            <button onclick="refreshDevices()">Enter</button>
+        </div>
+    </body>
 </html>
