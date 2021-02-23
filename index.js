@@ -90,7 +90,7 @@ function fetchAccessToken (code) {
     callAuthorizationApi(body);
 }
 
-function refreshAccessToekn() {
+function refreshAccessToken() {
     refresh_token = localStorage.getItem("refresh_token");
     let body = "grant_type=refresh_token";
     body += "&refresh_token=" + refresh_token;
