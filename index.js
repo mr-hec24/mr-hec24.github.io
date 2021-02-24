@@ -50,8 +50,6 @@ function onPageLoad(){
             }
         }
     }
-    
-    startTimer(5);
 }
 
 function handleRedirect(){
@@ -204,7 +202,7 @@ function removeAllItems( elementId ){
 }
 
 function play(){
-    
+    studying = true;
     var min = document.getElementById("study_time").value
     startTimer(min);
 
@@ -232,6 +230,8 @@ function shuffle(){
 function pause(){
     var min = document.getElementById("break_time").value
     startTimer(min);
+
+    studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
 
