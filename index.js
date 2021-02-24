@@ -8,7 +8,7 @@ var client_secret = ""; // In a real app you should not expose your client_secre
 var access_token = null;
 var refresh_token = null;
 var currentPlaylist = "";
-var radioButtons = [];
+var studying = false;
 
 const AUTHORIZE = "https://accounts.spotify.com/authorize"
 const TOKEN = "https://accounts.spotify.com/api/token";
@@ -33,14 +33,21 @@ function onPageLoad(){
         access_token = localStorage.getItem("access_token");
         if ( access_token == null ){
             // we don't have an access token so present token section
-            document.getElementById("tokenSection").style.display = 'block';  
+            document.getElementById("tokenSection").style.display = 'block';
+            document.getElemtnById("studyingSection").style.display = 'block';  
         }
         else {
             // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block';  
-            refreshDevices();
-            refreshPlaylists();
-            currentlyPlaying();
+            document.getElementById("deviceSection").style.display = 'block'; 
+            if (studying) {
+                document.getElementById("tokenSection").style.display = 'block';
+                currentlyPlaying();
+            }
+            else {
+                refreshDevices();
+                refreshPlaylists();
+                currentlyPlaying();
+            }
         }
     }
     
