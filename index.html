@@ -64,6 +64,16 @@
             <div class="col">
 
                 <div class="mb-3">
+                    <label for="Study Time" class="form-label">Study Time</label>
+                    <input type="range" id="study_time" name="Study Time" min="15" max="45" onchange="updateValueOfStudyTime()">
+                    <p id="valueOfStudyTime"></p>
+                    
+                    <label for="Break Time" class="form-label">Break Time</label>
+                    <input type="range" id="break_time" name="Break Time" min="1" max="15">
+                    <p id="valueOfBreakTime"></p>
+                </div>
+
+                <div class="mb-3">
                     <label for="devices" class="form-label">Devices</label>
                     <select id="devices" class="form-control">
                     </select>
@@ -77,18 +87,6 @@
                     </select>
                     <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
 
-                </div>
-
-                <div class="mb-3">
-                    <label for="tracks" class="form-label">Tracks</label>
-                    <select id="tracks" class="form-control">
-                    </select>
-                    <input class="btn btn-primary btn-sm mt-3" type="button" onclick="fetchTracks()" value="Fetch Tracks">
-                </div>
-
-                <div class="mb-3">
-                    <label for="tracks" class="form-label">Album</label>
-                    <input id="album" class="form-control">
                 </div>
 
                 <div class="row">

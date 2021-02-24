@@ -196,6 +196,10 @@ function removeAllItems( elementId ){
 }
 
 function play(){
+    
+    var min = document.getElementById("study_time").value
+    startTimer(min);
+
     let playlist_id = document.getElementById("playlists").value;
     let trackindex = document.getElementById("tracks").value;
     let album = document.getElementById("album").value;
@@ -218,6 +222,8 @@ function shuffle(){
 }
 
 function pause(){
+    var min = document.getElementById("break_time").value
+    startTimer(min);
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
 
@@ -321,42 +327,14 @@ function handleCurrentlyPlayingResponse(){
     }
 }
 
-function saveNewRadioButton(){
-    let item = {};
-    item.deviceId = deviceId();
-    item.playlistId = document.getElementById("playlists").value;
-    radioButtons.push(item);
-    localStorage.setItem("radio_button", JSON.stringify(radioButtons));
-    refreshRadioButtons();
+function updateValueOfStudyTime() {
+    var value = document.getElementById("study_time").value;
+    document.getElementById("study_time").innerHTML = value;
 }
 
-function refreshRadioButtons(){
-    let data = localStorage.getItem("radio_button");
-    if ( data != null){
-        radioButtons = JSON.parse(data);
-        if ( Array.isArray(radioButtons) ){
-            removeAllItems("radioButtons");
-            radioButtons.forEach( (item, index) => addRadioButton(item, index));
-        }
-    }
-}
-
-function onRadioButton( deviceId, playlistId ){
-    let body = {};
-    body.context_uri = "spotify:playlist:" + playlistId;
-    body.offset = {};
-    body.offset.position = 0;
-    body.offset.position_ms = 0;
-    callApi( "PUT", PLAY + "?device_id=" + deviceId, JSON.stringify(body), handleApiResponse );
-    //callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId, null, handleApiResponse );
-}
-
-function addRadioButton(item, index){
-    let node = document.createElement("button");
-    node.className = "btn btn-primary m-2";
-    node.innerText = index;
-    node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
-    document.getElementById("radioButtons").appendChild(node);
+function updateValueOfBreakTime() {
+    var value = document.getElementById("break_time").value;
+    document.getElementById("break_time").innerHTML = value;
 }
 
 function startTimer(minutes) {
