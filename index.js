@@ -213,7 +213,6 @@ function play(){
     let playlist_id = document.getElementById("playlists").value;
     let body = {};
     let album = document.getElementById("album").value;
-    let body = {};
     if ( album.length > 0 ){
         body.context_uri = album;
     }
