@@ -220,12 +220,6 @@ function play(){
 
 function changeStudyState() {
     studying = !studying;
-    if (studying) {
-        setTimeout(changeStudyState(), 300000);
-    }
-    else {
-        setTimeout(changeStudyState(), 1500000);
-    }
 }
 
 function shuffle(){
