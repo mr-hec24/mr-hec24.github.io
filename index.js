@@ -22,7 +22,7 @@ const PLAYER = "https://api.spotify.com/v1/me/player";
 const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
-previous()
+
 function onPageLoad(){
     client_id = localStorage.getItem("client_id");
     client_secret = localStorage.getItem("client_secret");
@@ -43,7 +43,8 @@ function onPageLoad(){
             currentlyPlaying();
         }
     }
-    refreshRadioButtons();
+    
+    startTimer(5);
 }
 
 function handleRedirect(){
@@ -329,12 +330,12 @@ function handleCurrentlyPlayingResponse(){
 
 function updateValueOfStudyTime() {
     var value = document.getElementById("study_time").value;
-    document.getElementById("study_time").innerHTML = value;
+    document.getElementById("valueOfStudyTime").innerHTML = value + " minutes";
 }
 
 function updateValueOfBreakTime() {
     var value = document.getElementById("break_time").value;
-    document.getElementById("break_time").innerHTML = value;
+    document.getElementById("valueOfBreakTime").innerHTML = value + " minutes";
 }
 
 function startTimer(minutes) {
