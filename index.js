@@ -22,7 +22,7 @@ const PLAYER = "https://api.spotify.com/v1/me/player";
 const TRACKS = "https://api.spotify.com/v1/playlists/{{PlaylistId}}/tracks";
 const CURRENTLYPLAYING = "https://api.spotify.com/v1/me/player/currently-playing";
 const SHUFFLE = "https://api.spotify.com/v1/me/player/shuffle";
-
+previous()
 function onPageLoad(){
     client_id = localStorage.getItem("client_id");
     client_secret = localStorage.getItem("client_secret");
@@ -221,13 +221,6 @@ function pause(){
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
 
-function next(){
-    callApi( "POST", NEXT + "?device_id=" + deviceId(), null, handleApiResponse );
-}
-
-function previous(){
-    callApi( "POST", PREVIOUS + "?device_id=" + deviceId(), null, handleApiResponse );
-}
 
 function transfer(){
     let body = {};
@@ -364,4 +357,9 @@ function addRadioButton(item, index){
     node.innerText = index;
     node.onclick = function() { onRadioButton( item.deviceId, item.playlistId ) };
     document.getElementById("radioButtons").appendChild(node);
+}
+
+function startTimer(minutes) {
+    var now = new Date().getTime();
+    console.log(now);
 }

@@ -93,11 +93,8 @@
 
                 <div class="row">
                     <div class="col">
-                        <input type="button" class="btn btn-dark" onclick="previous()" value="Prev">
-                        <input type="button" class="btn btn-dark" onclick="play()" value="Play">
-                        <input type="button" class="btn btn-dark" onclick="shuffle()" value="Shuffle">
+                        <input type="button" class="btn btn-dark" onclick="shuffle()" value="Start Studying">
                         <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
-                        <input type="button" class="btn btn-dark" onclick="next()" value="Next">
                     </div>
                 </div>
 
@@ -111,20 +108,24 @@
                             <div id="trackTitle"></div>
                             <div id="trackArtist"></div>
                         </div>
-
+                        
                     </div>
                 </div>
 
                 <div class="row  mt-3">
                     <div class="col">
                         <div id="radioButtons"></div>
-                        <input type="button" class="btn btn-dark" onclick="saveNewRadioButton()" value="Add">
+                        <input type="button" class="btn btn-dark" onclick="startTimer(25)" value="Add">
+                    </div>
+                    <div id="timer">
+                        <input type="button" class="btn btn-dark" onclick="startTimer(25)" value="Start Timer">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    
 
 </body>
 
