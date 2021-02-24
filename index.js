@@ -41,9 +41,11 @@ function onPageLoad(){
             document.getElementById("deviceSection").style.display = 'block'; 
             if (studying) {
                 document.getElementById("tokenSection").style.display = 'block';
+                document.getElementById("study_message").innerHTML = "Go Study!";
                 currentlyPlaying();
             }
             else {
+                document.getElementById("study_message").innerHTML = "";
                 refreshDevices();
                 refreshPlaylists();
                 currentlyPlaying();
@@ -204,7 +206,9 @@ function removeAllItems( elementId ){
 function play(){
     studying = true;
     var min = document.getElementById("study_time").value
-    startTimer(min);
+    //startTimer(min);
+    changeStudyState();
+
 
     let playlist_id = document.getElementById("playlists").value;
     let body = {};
@@ -214,6 +218,16 @@ function play(){
     callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
+function changeStudyState() {
+    studying = !studying;
+    if (studying) {
+        setTimeout(changeStudyState(), 300000);
+    }
+    else {
+        setTimeout(changeStudyState(), 1500000);
+    }
+}
+
 function shuffle(){
     callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
     play(); 
@@ -221,8 +235,8 @@ function shuffle(){
 
 function pause(){
     var min = document.getElementById("break_time").value
-    startTimer(min);
-
+    //startTimer(min);
+    changeStudyState();
     studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
