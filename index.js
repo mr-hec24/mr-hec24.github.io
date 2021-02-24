@@ -361,5 +361,20 @@ function addRadioButton(item, index){
 
 function startTimer(minutes) {
     var now = new Date().getTime();
-    console.log(now);
+    var twentyFiveMinutesLater = now + (minutes * 60000);
+
+    var x = setInterval(function() {
+        var distance = twentyFiveMinutesLater - now;
+    
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML = minutes + " : " + seconds;
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "EXPIRED";
+            pause();
+        }
+    }, 1000);
 }
