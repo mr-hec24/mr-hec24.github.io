@@ -1,6 +1,6 @@
 var token = "Bearer "
 var redirect_uri = "https%3A%2F%2Fmr-hec24.github.io%2F";
-var redirect_uri = "https://makeratplay.github.io/SpotifyWebAPI/"; // change this your value
+//var redirect_uri = "https://makeratplay.github.io/SpotifyWebAPI/"; // change this your value
 //var redirect_uri = "http://127.0.0.1:5500/index.html";
  
 
