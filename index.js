@@ -207,7 +207,6 @@ function play(){
     startTimer(min);
 
     let playlist_id = document.getElementById("playlists").value;
-    let trackindex = document.getElementById("tracks").value;
     let album = document.getElementById("album").value;
     let body = {};
     if ( album.length > 0 ){
