@@ -212,7 +212,14 @@ function play(){
 
     let playlist_id = document.getElementById("playlists").value;
     let body = {};
-    body.context_uri = "spotify:playlist:" + playlist_id;
+    let album = document.getElementById("album").value;
+    let body = {};
+    if ( album.length > 0 ){
+        body.context_uri = album;
+    }
+    else{
+        body.context_uri = "spotify:playlist:" + playlist_id;
+    }
     body.offset = {};
     body.offset.position_ms = 0;
     callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
