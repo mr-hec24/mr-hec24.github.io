@@ -38,7 +38,8 @@ function onPageLoad(){
         }
         else {
             // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block'; 
+            document.getElementById("deviceSection").style.display = 'block';
+            readySDK(); 
             if (studying) {
                 document.getElementById("tokenSection").style.display = 'block';
                 document.getElementById("study_message").innerHTML = "Go Study!";
@@ -131,7 +132,7 @@ function handleAuthorizationResponse(){
         alert(this.responseText);
     }
 }
-
+handle
 function refreshDevices(){
     callApi( "GET", DEVICES, null, handleDevicesResponse );
 }
@@ -370,4 +371,55 @@ function startTimer(minutes) {
             pause();
         }
     }, 1000);
+}
+
+
+function readySDK() {
+    
+    window.onSpotifyWebPlaybackSDKReady = () => {
+        const token = 'BQDeRymnCOF1x6yksAB3wJwYjrZVtTN19iTVqqLl9K9udU9LZA3QSeGH99Ynt11jtx784ooRtKre7uu-nDVvdD8Itr4bN1kdyAxgKI_ObHUgvS8i6Ct_WmOPWWUIWhn6ROHKYlDDpde46rz_D8ZldJyBz06Hn15qOYycWLOc2AxrLmSmXx28f4g';
+        const player = new Spotify.Player({
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); }
+        });
+
+        // Error handling
+        player.addListener('initialization_error', ({ message }) => { console.error(message); });
+        player.addListener('authentication_error', ({ message }) => { console.error(message); });
+        player.addListener('account_error', ({ message }) => { console.error(message); });
+        player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+        // Playback status updates
+        player.addListener('player_state_changed', state => { console.log(state); });
+
+        // Ready
+        player.addListener('ready', ({ device_id }) => {
+        console.log('Ready with Device ID', device_id);
+        });
+
+        // Not Ready
+        player.addListener('not_ready', ({ device_id }) => {
+        console.log('Device ID has gone offline', device_id);
+        });
+
+        // Connect to the player!
+        player.connect();
+    };
+}
+
+function playSpotifyURI(spotify_uri, getOAuthToken, id) {
+    if (this.status == 200) {
+        console.log("Playing Spotify URI Function:")
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        var uri = data.item.uri;
+        console.log(uri);
+
+        
+        play({
+            playerInstance: new Spotify.Player({ name: "GrifRed" }),
+            spotify_uri: 'spotify:track:7xGfFoTpQ2E7fRF5lN10tr',
+        });
+    }
+    
 }
