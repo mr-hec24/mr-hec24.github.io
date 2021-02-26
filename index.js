@@ -225,7 +225,15 @@ function play(){
     body.offset = {};
     body.offset.position = 0;
     body.position_ms = 0;
-    callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("PUT", PLAY + "?device_id=" + deviceId(), true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
+    xhr.send(JSON.stringify(body));
+    xhr.onload = handleApiResponse;
+    
+    //callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
 function changeStudyState() {
