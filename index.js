@@ -1,4 +1,4 @@
-var token = "Bearer "
+var token = "Bearer ";
 var redirect_uri = "https://mr-hec24.github.io/";
  
 
