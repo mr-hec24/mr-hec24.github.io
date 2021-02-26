@@ -39,7 +39,7 @@ function onPageLoad(){
         else {
             // we have an access token so present device section
             document.getElementById("deviceSection").style.display = 'block';
-            //readySDK(); 
+            
             if (studying) {
                 document.getElementById("tokenSection").style.display = 'block';
                 document.getElementById("study_message").innerHTML = "Go Study!";
@@ -52,6 +52,20 @@ function onPageLoad(){
                 currentlyPlaying();
             }
         }
+    }
+}
+
+function changeStudyState() {
+    if (studying) {
+        document.getElementById("tokenSection").style.display = 'block';
+        document.getElementById("study_message").innerHTML = "Go Study!";
+        currentlyPlaying();
+    }
+    else {
+        document.getElementById("study_message").innerHTML = "Go study! We will be back in a while...";
+        refreshDevices();
+        refreshPlaylists();
+        currentlyPlaying();
     }
 }
 
@@ -208,10 +222,9 @@ function play(){
     studying = true;
     var min = document.getElementById("study_time").value
 
-    onPageLoad();
-    startTimer(min);
-    //changeStudyState();
-
+    changeStudyState();
+    //startTimer(min);
+    setTimeout(changeStudyState(), 60000);
     //playSpotifyURI();
 
     let playlist_id = document.getElementById("playlists").value;
@@ -238,14 +251,7 @@ function play(){
     //callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
-function changeStudyState() {
-    if (studying) {
-        studying = false;
-    }
-    else {
-        studying = true;
-    }
-}
+
 
 function shuffle(){
     callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
@@ -254,10 +260,9 @@ function shuffle(){
 
 function pause(){
     studying = false;
-    onPageLoad();
+    changeStudyState();
     var min = document.getElementById("break_time").value
-    startTimer(min);
-    //changeStudyState();
+    setTimeout(changeStudyState(), 60000);
     studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
