@@ -132,7 +132,7 @@ function handleAuthorizationResponse(){
         alert(this.responseText);
     }
 }
-handle
+
 function refreshDevices(){
     callApi( "GET", DEVICES, null, handleDevicesResponse );
 }
