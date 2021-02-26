@@ -442,5 +442,15 @@ function playSpotifyURI() {
             spotify_uri: 'spotify:track:7xGfFoTpQ2E7fRF5lN10tr',
         });
     }
+    else if ( this.status == 204 ){
+
+    }
+    else if ( this.status == 401 ){
+        refreshAccessToken()
+    }
+    else {
+        console.log(this.responseText);
+        alert(this.responseText);
+    }
     
 }
