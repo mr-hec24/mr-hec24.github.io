@@ -56,15 +56,14 @@ function onPageLoad(){
 }
 
 function changeStudyState() {
+    document.getElementById("deviceSection").style.display = 'none';
     if (studying) {
         document.getElementById("tokenSection").style.display = 'block';
         document.getElementById("study_message").innerHTML = "Go Study!";
         currentlyPlaying();
     }
     else {
-        document.getElementById("study_message").innerHTML = "Go study! We will be back in a while...";
-        refreshDevices();
-        refreshPlaylists();
+        document.getElementById("study_message").innerHTML = "";
         currentlyPlaying();
     }
 }
