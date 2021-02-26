@@ -1,13 +1,13 @@
 /* CSS HEX 
 --black-chocolate: #131200ff;
 --mantis: #78bc61ff;
---dark-khaki: #c0c781ff;
+--dark-khaki: #dbe300;
 --camel: #c59b76ff;
 --salmon: #e9806eff;
 */
 
 body{
-    background-color: #c0c781ff;
+    background-color: #dbe300;
 }
 
 #tokenSection{
@@ -20,7 +20,7 @@ body{
 
 .container{
     padding: 20px;    
-    background-color: #78bc61ff;
+    background-color: #f6fa8c;
 }
 
 #albumImage{

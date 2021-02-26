@@ -55,18 +55,24 @@ function onPageLoad(){
     }
 }
 
+// Changes displays of sections based on whether you are studying or not
 function changeStudyState() {
+
+    // Hide the token section at all times
     document.getElementById("tokenSection").style.display = 'none';
-    if (studying) {
-        
+
+    if (studying) { // If studying, display only study section
         document.getElementById("studySection").style.display = 'block';
+        document.getElementById("deviceSection").style.display = 'none';
+        
         document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
         currentlyPlaying();
     }
-    else {
-        document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
+    else { // If not studying, display study section and device section
         document.getElementById("studySection").style.display = 'block';
         document.getElementById("deviceSection").style.display = 'block';
+
+        document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
         currentlyPlaying();
     }
 }
@@ -87,6 +93,7 @@ function getCode(){
     return code;
 }
 
+// Requests user to login to Spotify Account
 function requestAuthorization(){
     client_id = document.getElementById("clientId").value;
     client_secret = document.getElementById("clientSecret").value;
@@ -102,6 +109,7 @@ function requestAuthorization(){
     window.location.href = url; // Show Spotify's authorization screen
 }
 
+// Gets access token from the user using client ID and client secret
 function fetchAccessToken( code ){
     let body = "grant_type=authorization_code";
     body += "&code=" + code; 
@@ -111,6 +119,7 @@ function fetchAccessToken( code ){
     callAuthorizationApi(body);
 }
 
+// Refreshes the access token
 function refreshAccessToken(){
     refresh_token = localStorage.getItem("refresh_token");
     let body = "grant_type=refresh_token";
@@ -119,6 +128,7 @@ function refreshAccessToken(){
     callAuthorizationApi(body);
 }
 
+// Basically is what calls the api
 function callAuthorizationApi(body){
     let xhr = new XMLHttpRequest();
     xhr.open("POST", TOKEN, true);
@@ -128,6 +138,7 @@ function callAuthorizationApi(body){
     xhr.onload = handleAuthorizationResponse;
 }
 
+// Handles Spotify user login information
 function handleAuthorizationResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
@@ -176,6 +187,7 @@ function addDevice(item){
     document.getElementById("devices").appendChild(node); 
 }
 
+// Calls the API of Spotify
 function callApi(method, url, body, callback){
     let xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
@@ -220,6 +232,7 @@ function removeAllItems( elementId ){
     }
 }
 
+// Plays Music 
 function play(){
     studying = true;
     var min = document.getElementById("study_time").value
@@ -249,13 +262,13 @@ function play(){
     xhr.onload = handleApiResponse;
 }
 
-
-
+// Shuffles Music
 function shuffle(){
     callApi( "PUT", SHUFFLE + "?state=true&device_id=" + deviceId(), null, handleApiResponse );
     play(); 
 }
 
+// Pauses Music
 function pause(){
     studying = false;
     
@@ -267,7 +280,6 @@ function pause(){
     studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
-
 
 function transfer(){
     let body = {};
