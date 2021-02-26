@@ -34,7 +34,8 @@ function onPageLoad(){
         if ( access_token == null ){
             // we don't have an access token so present token section
             document.getElementById("tokenSection").style.display = 'block';
-            document.getElemtnById("studyingSection").style.display = 'block';  
+            document.getElemtnById("studyingSection").style.display = 'none'; 
+            document.getElementById("deviceSection").style.display = 'none';
         }
         else {
             // we have an access token so present device section
