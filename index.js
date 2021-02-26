@@ -38,15 +38,15 @@ function onPageLoad(){
         }
         else {
             // we have an access token so present device section
-            document.getElementById("deviceSection").style.display = 'block';
+            document.getElementById("tokenSection").style.display = 'none';
             
             if (studying) {
-                document.getElementById("tokenSection").style.display = 'block';
-                document.getElementById("study_message").innerHTML = "Go Study!";
+                document.getElementById("studySection").style.display = 'block';
+                document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
                 currentlyPlaying();
             }
             else {
-                document.getElementById("study_message").innerHTML = "Go study! We will be back in a while...";
+                document.getElementById("study_message").innerHTML = "< class=welcomeText>You've got a break, enjoy it!</>";
                 refreshDevices();
                 refreshPlaylists();
                 currentlyPlaying();
@@ -56,14 +56,16 @@ function onPageLoad(){
 }
 
 function changeStudyState() {
-    document.getElementById("deviceSection").style.display = 'none';
+    document.getElementById("tokenSection").style.display = 'none';
     if (studying) {
-        document.getElementById("tokenSection").style.display = 'block';
+        document.getElementById("deviceSection").style.display = 'block';
+        document.getElementById("studySection").style.display = 'block';
         document.getElementById("study_message").innerHTML = "Go Study!";
         currentlyPlaying();
     }
     else {
         document.getElementById("study_message").innerHTML = "";
+        document.getElementById("studySection").style.display = 'block';
         currentlyPlaying();
     }
 }
