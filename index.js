@@ -39,7 +39,7 @@ function onPageLoad(){
         else {
             // we have an access token so present device section
             document.getElementById("deviceSection").style.display = 'block';
-            readySDK(); 
+            //readySDK(); 
             if (studying) {
                 document.getElementById("tokenSection").style.display = 'block';
                 document.getElementById("study_message").innerHTML = "Go Study!";
@@ -208,7 +208,7 @@ function play(){
     studying = true;
     var min = document.getElementById("study_time").value
     //startTimer(min);
-    changeStudyState();
+    //changeStudyState();
 
     //playSpotifyURI();
 
@@ -251,9 +251,10 @@ function shuffle(){
 }
 
 function pause(){
+    studying = false;
     var min = document.getElementById("break_time").value
     //startTimer(min);
-    changeStudyState();
+    //changeStudyState();
     studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
