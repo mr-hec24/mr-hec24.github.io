@@ -210,21 +210,22 @@ function play(){
     //startTimer(min);
     changeStudyState();
 
-    playSpotifyURI();
+    //playSpotifyURI();
 
-    // let playlist_id = document.getElementById("playlists").value;
-    // let body = {};
-    // let album = document.getElementById("album").value;
-    // if ( album.length > 0 ){
-    //     body.context_uri = album;
-    // }
-    // else{
-    //     body.context_uri = "spotify:playlist:" + playlist_id;
-    // }
-    // body.offset = {};
-    // body.offset.position = 0;
-    // body.offset.position_ms = 0;
-    // callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
+    let playlist_id = document.getElementById("playlists").value;
+    console.log(playlist_id);
+    let body = {};
+    let album = document.getElementById("album").value;
+    if ( album.length > 0 ){
+        body.context_uri = album;
+    }
+    else{
+        body.context_uri = "spotify:playlist:" + playlist_id;
+    }
+    body.offset = {};
+    body.offset.position = 0;
+    body.offset.position_ms = 0;
+    callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
 function changeStudyState() {
