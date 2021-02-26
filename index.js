@@ -46,7 +46,7 @@ function onPageLoad(){
                 currentlyPlaying();
             }
             else {
-                document.getElementById("study_message").innerHTML = "< class=welcomeText>You've got a break, enjoy it!</>";
+                document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
                 refreshDevices();
                 refreshPlaylists();
                 currentlyPlaying();
@@ -60,12 +60,12 @@ function changeStudyState() {
     if (studying) {
         document.getElementById("deviceSection").style.display = 'block';
         document.getElementById("studySection").style.display = 'block';
-        document.getElementById("study_message").innerHTML = "Go Study!";
+        document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
         currentlyPlaying();
     }
     else {
         document.getElementById("study_message").innerHTML = "";
-        document.getElementById("studySection").style.display = 'block';
+        document.getElementById("studySection").style.display = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
         currentlyPlaying();
     }
 }
