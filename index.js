@@ -38,16 +38,16 @@ function onPageLoad(){
         }
         else {
             // we have an access token so present device section
-            document.getElementById("studySection").style.display = 'block';
+            document.getElementById("studyingSection").style.display = 'block';
             document.getElementById("deviceSection").style.display = 'none';
             
             if (studying) {
-                document.getElementById("studySection").style.display = 'block';
+                document.getElementById("studyingSection").style.display = 'block';
                 document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
                 currentlyPlaying();
             }
             else {
-                document.getElementById("studySection").style.display = 'block';
+                document.getElementById("studyingSection").style.display = 'block';
                 document.getElementById("deviceSection").style.display = 'block';
 
                 document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
@@ -66,14 +66,14 @@ function changeStudyState() {
     document.getElementById("tokenSection").style.display = 'none';
 
     if (studying) { // If studying, display only study section
-        document.getElementById("studySection").style.display = 'block';
+        document.getElementById("studyingSection").style.display = 'block';
         document.getElementById("deviceSection").style.display = 'none';
         
         document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
         currentlyPlaying();
     }
     else { // If not studying, display study section and device section
-        document.getElementById("studySection").style.display = 'block';
+        document.getElementById("studyingSection").style.display = 'block';
         document.getElementById("deviceSection").style.display = 'block';
 
         document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
