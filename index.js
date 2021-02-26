@@ -44,7 +44,7 @@ function onPageLoad(){
             
             if (studying) {
                 document.getElementById("studyingSection").style.display = 'block';
-                document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
+                document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! We will be back in a while...</h1>";
                 currentlyPlaying();
             }
             else {
@@ -70,7 +70,7 @@ function changeStudyState() {
         document.getElementById("studyingSection").style.display = 'block';
         document.getElementById("deviceSection").style.display = 'none';
         
-        document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! we will be back in a while...</h1>";
+        document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>Go Study! We will be back in a while...</h1>";
         currentlyPlaying();
     }
     else { // If not studying, display study section and device section
