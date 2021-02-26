@@ -46,7 +46,7 @@ function onPageLoad(){
                 currentlyPlaying();
             }
             else {
-                document.getElementById("study_message").innerHTML = "";
+                document.getElementById("study_message").innerHTML = "Go study! We will be back in a while...";
                 refreshDevices();
                 refreshPlaylists();
                 currentlyPlaying();
@@ -207,7 +207,9 @@ function removeAllItems( elementId ){
 function play(){
     studying = true;
     var min = document.getElementById("study_time").value
-    //startTimer(min);
+
+    onPageLoad();
+    startTimer(min);
     //changeStudyState();
 
     //playSpotifyURI();
@@ -252,8 +254,9 @@ function shuffle(){
 
 function pause(){
     studying = false;
+    onPageLoad();
     var min = document.getElementById("break_time").value
-    //startTimer(min);
+    startTimer(min);
     //changeStudyState();
     studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
