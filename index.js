@@ -38,7 +38,8 @@ function onPageLoad(){
         }
         else {
             // we have an access token so present device section
-            document.getElementById("tokenSection").style.display = 'none';
+            document.getElementById("studySection").style.display = 'block';
+            document.getElementById("deviceSection").style.display = 'none';
             
             if (studying) {
                 document.getElementById("studySection").style.display = 'block';
@@ -46,6 +47,9 @@ function onPageLoad(){
                 currentlyPlaying();
             }
             else {
+                document.getElementById("studySection").style.display = 'block';
+                document.getElementById("deviceSection").style.display = 'block';
+
                 document.getElementById("study_message").innerHTML = "<h1 class=welcomeText>You've got a break, enjoy it!</h1>";
                 refreshDevices();
                 refreshPlaylists();
