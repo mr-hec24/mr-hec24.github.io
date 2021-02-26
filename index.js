@@ -224,9 +224,7 @@ function play(){
     var min = document.getElementById("study_time").value
 
     changeStudyState();
-    //startTimer(min);
-    setTimeout(changeStudyState(), 60000);
-    //playSpotifyURI();
+    setTimeout(changeStudyState(), min * 60000);
 
     let playlist_id = document.getElementById("playlists").value;
     console.log(playlist_id);
@@ -248,8 +246,6 @@ function play(){
     xhr.setRequestHeader('Authorization', 'Bearer ' + access_token);
     xhr.send(JSON.stringify(body));
     xhr.onload = handleApiResponse;
-    
-    //callApi( "PUT", PLAY + "?device_id=" + deviceId(), JSON.stringify(body), handleApiResponse );
 }
 
 
@@ -261,9 +257,12 @@ function shuffle(){
 
 function pause(){
     studying = false;
+    
+    var min = document.getElementById("break_time").value;
+
     changeStudyState();
-    var min = document.getElementById("break_time").value
-    setTimeout(changeStudyState(), 60000);
+    setTimeout(changeStudyState(), min * 60000);
+
     studying = false;
     callApi( "PUT", PAUSE + "?device_id=" + deviceId(), null, handleApiResponse );
 }
@@ -342,7 +341,6 @@ function handleCurrentlyPlayingResponse(){
             document.getElementById("trackArtist").innerHTML = data.item.artists[0].name;
         }
 
-
         if ( data.device != null ){
             // select device
             currentDevice = data.device.id;
@@ -376,24 +374,4 @@ function updateValueOfStudyTime() {
 function updateValueOfBreakTime() {
     var value = document.getElementById("break_time").value;
     document.getElementById("valueOfBreakTime").innerHTML = value + " minutes";
-}
-
-function startTimer(minutes) {
-    var now = new Date().getTime();
-    var twentyFiveMinutesLater = now + (minutes * 60000);
-
-    var x = setInterval(function() {
-        var distance = twentyFiveMinutesLater - now;
-    
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("timer").innerHTML = minutes + " : " + seconds;
-
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("timer").innerHTML = "EXPIRED";
-            pause();
-        }
-    }, 1000);
 }
