@@ -237,7 +237,12 @@ function play(){
 }
 
 function changeStudyState() {
-    studying = !studying;
+    if (studying) {
+        studying = false;
+    }
+    else {
+        studying = true;
+    }
 }
 
 function shuffle(){
