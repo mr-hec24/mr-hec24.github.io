@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Pomodoro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+    <script src="index.js"></script>
+</head>
+
+<body onload="onPageLoad()">
+    <div class="container">
+
+        <div id="tokenSection" class="row">
+        </div>
+
+        <div id="deviceSection" class="row">
+            <div class="col">
+
+                <div class="mb-3">
+                    <label for="Study Time" class="form-label">Study Time</label>
+                    <input type="range" id="study_time" name="Study Time" min="15" max="45" onchange="updateValueOfStudyTime()">
+                    <label id="valueOfStudyTime"></label>
+                    <br>
+                    <label for="Break Time" class="form-label">Break Time</label>
+                    <input type="range" id="break_time" name="Break Time" min="1" max="15" onchange="updateValueOfBreakTime()">
+                    <label id="valueOfBreakTime"></label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="devices" class="form-label">Devices</label>
+                    <select id="devices" class="form-control">
+                    </select>
+                    <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshDevices()" value="Refresh Devices">
+                    <input type="button" class="btn btn-dark btn-sm  mt-3" onclick="transfer()" value="Transfer">
+                </div>
+
+                <div class="mb-3">
+                    <label for="playlists" class="form-label">Playlists</label>
+                    <select id="playlists" class="form-control">
+                    </select>
+                    <input class="btn btn-primary btn-sm mt-3" type="button" onclick="refreshPlaylists()" value="Refresh Playlists">
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="tracks" class="form-label">Album</label>
+                    <input id="album" class="form-control">
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <input type="button" class="btn btn-dark" onclick="play()" value="Start Studying">
+                        <input type="button" class="btn btn-dark" onclick="pause()" value="Pause">
+                    </div>
+                </div>
+                <div class="row  mt-3">
+                    <div class="col">
+                        <div id="radioButtons"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="studyingSection">
+            <div id="study_message" class="row mt-3">
+            </div>
+            <div class="row  mt-3">
+                <div class="col">
+                    <h1> Currently Playing</h1>
+                    <input type="button" class="btn btn-primary btn-sm mt-3" onclick="currentlyPlaying()" value="Refresh Currently Playing">
+                    <div>
+                        <img id="albumImage" src="">
+                        <div id="trackTitle"></div>
+                        <div id="trackArtist"></div>
+                    </div>
+                    <div id="timer">
+
+                    </div>
+                </div>
+            </div>
+            <!-- <script src="https://sdk.scdn.co/spotify-player.js"></script>
+            <script src="index.js"></script> -->
+        </div>
+        
+    </div>
+
+    
+
+</body>
+
+</html>
